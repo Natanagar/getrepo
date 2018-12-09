@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/Header';
+import Content from './components/Content'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="Github repo">
+        <Header />
         Hello world!
+        <Content />
       </div>
     );
   }
