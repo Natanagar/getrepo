@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
-import Content from './components/Content';
+import Home from './components/Home';
+import GithubList from './components/Home';
+import Repo from './components/repo/Repo'
+import { Route } from 'react-router-dom'
 import Splashscreen from './components/splashscreen/Splashscreen';
 import Github from '/Users/home/Documents/Programming/getrepo/src/api/Github'
 import './App.css';
@@ -23,19 +25,18 @@ class App extends Component {
     console.log(this.state)
     const { wait } = this.state; 
     return (
-      wait 
-      ?
-      <div className="Github repo">
-        <Splashscreen />
-        <Header />
-        <Content />
-      </div> 
-      : 
-      <div className="Github repo">
-      <Header />
-      <Content />
-      </div> 
-    );
+      <div>
+        <Route exact path='/' render={
+          ()=>(
+          <Home 
+          wait={wait}
+          />
+          )
+        } /> 
+        <Route path ='/repo' render={()=>(<GithubList />)}/>
+      </div>
+    )
+    
   }
 }
 
