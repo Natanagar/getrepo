@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Content extends Component {
+export default class Header extends Component {
   render() {
     return (
       <div>
-        The App Content
+        Githup App
       </div>
     )
   }
