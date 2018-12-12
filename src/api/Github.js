@@ -1,6 +1,4 @@
-export default () => {
-  const githab_data = {
+const Github = {
       api : "https://api.github.com"
-  }
-  return githab_data;
-}
+    }
+export default Github;
