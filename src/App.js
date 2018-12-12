@@ -10,6 +10,9 @@ class App extends Component {
     super(props)
     this.getDataFromGithub = this.getDataFromGithub.bind(this)
   }
+  state = {
+    wait : false
+  }
   getDataFromGithub = () => {
     console.log(Github)
   }
@@ -17,12 +20,21 @@ class App extends Component {
     this.getDataFromGithub();
   }
   render() {
+    console.log(this.state)
+    const { wait } = this.state; 
     return (
+      wait 
+      ?
       <div className="Github repo">
         <Splashscreen />
         <Header />
         <Content />
-      </div>
+      </div> 
+      : 
+      <div className="Github repo">
+      <Header />
+      <Content />
+      </div> 
     );
   }
 }
