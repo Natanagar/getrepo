@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 const Star = () =>{
     return(
         <div>
-            <i className="material-icons">stars</i>
+            <i 
+            style={{
+                justifyContent: "center"
+            }}
+            className="material-icons">stars</i>
         </div>
     )
 }

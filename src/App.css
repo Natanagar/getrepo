@@ -95,3 +95,10 @@ ul.menu li a{
   table{
       width: 100%;
   }
+  /* Counter */
+  div.Counter{
+      display: flex;
+  }
+  div.Buttons{
+      
+  }

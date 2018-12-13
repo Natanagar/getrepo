@@ -21,8 +21,25 @@ class Counter extends Component{
             <Star 
             onclick={()=>(console.log('Stars'))}
             />
-            <button><i className="material-icons">add</i></button>
-            <button><i class="material-icons">remove</i></button>
+            <div className="Buttons">
+            <button><i 
+            style={{
+                fontSize: "10px",
+                paddingLeft: '10px'
+            }}
+            className="material-icons">add</i></button>
+            <button>
+                <i 
+                style={{
+                    fontSize: "10px"
+                }}
+                className="material-icons">remove</i></button>
+            <button><i 
+            style={{
+                fontSize: "10px"
+            }}
+            className="material-icons">clear</i></button>
+            </div>
             </div>
         )
     }
