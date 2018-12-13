@@ -13,7 +13,7 @@ export default class Content extends Component {
         <table>
           <tr>
             <th
-            onclick={getDataFromTable}
+            onClick={getDataFromTable}
             >
             Name
             </th>

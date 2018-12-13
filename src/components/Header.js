@@ -17,9 +17,9 @@ export default class Header extends Component {
               </logo>
 
             </li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Groups</a></li>
-            <li><a href="#">Activity</a></li>
+            <li><a href="/some/valid/url">Projects</a></li>
+            <li><a href="/some/valid/url">Groups</a></li>
+            <li><a href="/some/valid/url">Activity</a></li>
             <li className="search">
               <span style={{
                   fontSize:"20px",
@@ -30,8 +30,8 @@ export default class Header extends Component {
               </span>
               <input type="text" placeholder="Search or jump to..."></input>
             </li>
-            <li><a href='#'>PullRequests</a></li>
-            <li><a href="#">Issues</a></li>
+            <li><a href='/some/valid/url'>PullRequests</a></li>
+            <li><a href="/some/valid/url">Issues</a></li>
           </ul>
       </nav>
     )
