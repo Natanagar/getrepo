@@ -10,10 +10,16 @@ import './App.css';
 class App extends Component {
   constructor(props){
     super(props)
-    this.getDataFromGithub = this.getDataFromGithub.bind(this)
+    this.getDataFromGithub = this.getDataFromGithub.bind(this);
+    this.sortingRepoInTheColumns = this.sortingRepoInTheColumns.bind(this)
   }
   state = {
     wait : false
+  }
+  sortingRepoInTheColumns = (event, data) => {
+    console.log("We've got it");
+    console.log(event);
+
   }
   getDataFromGithub = () => {
     console.log(Github)
@@ -30,6 +36,7 @@ class App extends Component {
           ()=>(
           <Home 
           wait={wait}
+          sortingRepoInTheColumns={this.sortingRepoInTheColumns}
           />
           )
         } /> 

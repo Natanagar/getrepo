@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export default class Header extends Component {
   render() {
     return (
-      <div className="header">
-        <nav>
+      <nav className="header">
+
           
           <ul className='menu' role="navigation">
             <li>
@@ -33,9 +33,7 @@ export default class Header extends Component {
             <li><a href='#'>PullRequests</a></li>
             <li><a href="#">Issues</a></li>
           </ul>
-
-        </nav>
-      </div>
+      </nav>
     )
   }
 }
