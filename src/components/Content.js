@@ -1,19 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Counter from './counter/Counter'
 
 export default class Content extends Component {
   render() {
+    const { sortingRepoInTheColumns, getDataFromTable } = this.props;
+    console.log(getDataFromTable)
     return (
      
       
       <div className='content-repos'>
+        <Counter />
         <table>
           <tr>
-            <th>
+            <th
+            onclick={getDataFromTable}
+            >
             Name
             </th>
-            <th
-            onclick={()=>(console.log('Click the second column'))}
-            >
+            <th>
+            <input 
+            type="text"
+            placeholder="Last Commit"
+            onChange={getDataFromTable}
+            ></input>
             Last commit</th>
             <th
             onclick={()=>(console.log('Click the third column'))}

@@ -11,18 +11,21 @@ class App extends Component {
   constructor(props){
     super(props)
     this.getDataFromGithub = this.getDataFromGithub.bind(this);
-    this.sortingRepoInTheColumns = this.sortingRepoInTheColumns.bind(this)
+    this.sortingRepoInTheColumns = this.sortingRepoInTheColumns.bind(this);
+    this.getDataFromTable = this.getDataFromTable.bind(this)
   }
   state = {
     wait : false
   }
   sortingRepoInTheColumns = (event, data) => {
-    console.log("We've got it");
+    //console.log("We've got it");
     console.log(event);
-
+  }
+  getDataFromTable = event => {
+    console.log("We've got it")
   }
   getDataFromGithub = () => {
-    console.log(Github)
+    console.log(Github.api)
   }
   componentDidMount() {
     this.getDataFromGithub();
@@ -37,6 +40,7 @@ class App extends Component {
           <Home 
           wait={wait}
           sortingRepoInTheColumns={this.sortingRepoInTheColumns}
+          getDataFromTable={this.getDataFromTable}
           />
           )
         } /> 
