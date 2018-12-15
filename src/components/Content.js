@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import Counter from './counter/Counter'
+import moment from 'moment';
+import Counter from './counter/Counter';
 
 export default class Content extends Component {
   render() {
     const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     console.log(rowTable)
-    const Headers = ['Name','Path','Description']
+    const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
    
     return (
      
       
       <div className='content-repos'>
-        <Counter />
         <table>
           <thead>
             <tr>
@@ -26,6 +26,9 @@ export default class Content extends Component {
                 <td>{repo.name}</td>
                 <td>{repo.full_name}</td>
                 <td>{repo.description}</td>
+                <td>{repo.language}</td>
+                <td>{repo.updated_at}</td>
+                <Counter />
               </tr>
               )}
 
