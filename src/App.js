@@ -35,10 +35,12 @@ class App extends Component {
     .then((response) => {
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
-      this.setState({
-        totalAmount : totalRepos,
-        arrayFromRepo : reposFromGithub
-      })
+      if(totalRepos !== this.state.arrayFromRepo){
+        this.setState({
+          totalAmount : totalRepos,
+          arrayFromRepo : reposFromGithub
+        })
+      }
     })
     .catch(error => console.log(error))
   }
@@ -46,7 +48,7 @@ class App extends Component {
     this.getDataFromGithub();
   }
   render() {
-    console.log(this.state)
+    console.log(this.state.arrayFromRepo)
     const { wait, arrayFromRepo, totalAmount } = this.state; 
     return (
       <div>
