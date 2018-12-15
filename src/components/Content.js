@@ -9,7 +9,7 @@ export default class Content extends Component {
     const rowTable = arrayFromRepo.map(item => item.name)
     const dataNow = new Date()
     console.log(dataNow)
-    const dataOfTheLastChanges = arrayFromRepo.map(item=>console.log(item.updated_at))
+    arrayFromRepo.map(item=>console.log(item.updated_at.substr(0,10)))
  
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
    
@@ -41,7 +41,7 @@ export default class Content extends Component {
                 <td>{repo.full_name}</td>
                 <td>{repo.description}</td>
                 <td>{repo.language}</td>
-                <td>{repo.updated_at}</td>
+                <td>{moment(repo.updated_at.substr(0,10)).fromNow()}</td>
                 <Counter />
               </tr>
               )}
