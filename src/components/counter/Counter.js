@@ -1,38 +1,20 @@
 import React, { Component } from 'react';
-import Star from "./Star"
-class Counter extends Component{
-    constructor(props){
-        super(props)
-        this.increment = this.increment.bind(this)
-        this.decrement = this.decrement.bind(this)
-    }
-    state = {
-        increment : {
-            amout : 1
-        },
-        decrement : {
-            amount : 1
-        },
-        counter: 0 
-    }
-    increment = () => {
-        console.log("Plus")
-    }
-    decrement = () => {
-        console.log("Minus")
-    }
+import Star from "./Star";
+import Store from './Redux'
 
+class Counter extends Component{
+
+    state={
+        counter: 0
+    }
     render(){
-        console.log(this.decrement)
-        const { counter } = this.state
-        
-        return(
+       return(
             <div className="Counter">
             <Star 
             onClick={()=>(console.log('Stars'))}
             />
             <button
-            onClick={this.increment}
+            onClick={()=>(console.log("plus"))}
             >
                 <i style={{
                     fontSize: "10px",
@@ -43,7 +25,7 @@ class Counter extends Component{
                 >add</i>
             </button>
             <button
-            onClick={this.decrement}
+            onClick={()=>{console.log('minus')}}
             ><i style={{
                 fontSize: "10px"
             }}
@@ -58,7 +40,7 @@ class Counter extends Component{
                 fontWeight: 'bold',
                 fontStyle: 'oblique'
             }}
-            >{counter}</div>
+            >0</div>
             </div>
         )
     }

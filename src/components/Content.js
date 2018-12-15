@@ -3,8 +3,9 @@ import Counter from './counter/Counter'
 
 export default class Content extends Component {
   render() {
-    const { sortingRepoInTheColumns, getDataFromTable } = this.props;
-    console.log(getDataFromTable)
+    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo } = this.props;
+    const newRepo = Object.assign(arrayFromRepo);
+    console.log(newRepo);
     return (
      
       
@@ -17,37 +18,35 @@ export default class Content extends Component {
             >
             Name
             </th>
-            <th>
-            <input 
-            type="text"
-            placeholder="Last Commit"
-            onChange={getDataFromTable}
-            ></input>
+            <th
+            onClick={getDataFromTable}
+            >
+            
             Last commit</th>
             <th
-            onclick={()=>(console.log('Click the third column'))}
+            onClick={()=>(console.log('Click the third column'))}
             >Last update</th>
           </tr>
           <tr>
             <td
-            onclick={()=>(console.log('Clicking to first repo'))}
+            onClick={()=>(console.log('Clicking to first repo'))}
             >First repo</td>
             <td
-            onclick={()=>(console.log('Clicking to second repo'))}
+            onClick={()=>(console.log('Clicking to second repo'))}
             >first repo last commit</td> 
             <td
-            onclick={()=>(console.log('Clicking to third repo'))}
+            onClick={()=>(console.log('Clicking to third repo'))}
             >first repo last update</td>
           </tr>
           <tr>
             <td
-            onclick={()=>(console.log('Clicking to first repo'))}
+            onClick={()=>(console.log('Clicking to first repo'))}
             >First repo</td>
             <td
-            onclick={()=>(console.log('Clicking to second repo'))}
+            onClick={()=>(console.log('Clicking to second repo'))}
             >second repo last commit</td> 
             <td
-            onclick={()=>(console.log('Clicking to third repo'))}
+            onClick={()=>(console.log('Clicking to third repo'))}
             >second repo last update</td>
           </tr>
         </table>
