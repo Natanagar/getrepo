@@ -26,7 +26,12 @@ export default class Content extends Component {
        
           <tbody>
             {arrayFromRepo.map(repo => 
-              <tr key={repo.id}>
+              <tr style={{
+                border : "2px solid black",
+                fontSize : "10px",
+                fontFamily: 'Noto Serif TC',
+                fontWeight : 'italic'
+              }} key={repo.id}>
                 <Link
                 to='/repo'>
                   <td>

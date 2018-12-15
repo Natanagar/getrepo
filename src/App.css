@@ -102,3 +102,8 @@ ul.menu li a{
   div.Buttons{
       
   }
+  /*Table with content*/
+
+table{
+    border-collapse: collapse;
+}
