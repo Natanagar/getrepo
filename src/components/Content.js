@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from "react-router-dom";
 import Counter from './counter/Counter';
 
 export default class Content extends Component {
   render() {
     const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
-    console.log(rowTable)
+    const dataNow = new Date()
+    console.log(dataNow)
+    const dataOfTheLastChanges = arrayFromRepo.map(item=>console.log(item.updated_at))
+ 
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
    
     return (
@@ -23,7 +27,12 @@ export default class Content extends Component {
           <tbody>
             {arrayFromRepo.map(repo => 
               <tr key={repo.id}>
-                <td>{repo.name}</td>
+                <Link
+                to='/repo'>
+                  <td>
+                    {repo.name}
+                  </td>
+                </Link>
                 <td>{repo.full_name}</td>
                 <td>{repo.description}</td>
                 <td>{repo.language}</td>

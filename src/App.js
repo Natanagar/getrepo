@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Home from './components/Home';
-import GithubList from './components/Home';
-import Repo from './components/repo/Repo';
+import GithubList from './components/repo/Repo';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 import Splashscreen from './components/splashscreen/Splashscreen';
@@ -63,7 +62,7 @@ class App extends Component {
           />
           )
         } /> 
-        <Route path ='/repo' render={()=>(<GithubList />)}/>
+        <Route path ='/repo' render={()=><GithubList />}/>
       </div>
     )
     
