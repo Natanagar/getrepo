@@ -8,8 +8,9 @@ import moment from 'moment';
 class GithubList extends Component{
     state ={ 
         listOfRepoFromGithub : [],
-        api : "",
-        repo : []
+        api : 'https://api.github.com/repos/Natanagar/',
+        repo : [],
+        repoName : ""
     }
     getDataFromApi = () => {
         axios({
@@ -34,6 +35,7 @@ class GithubList extends Component{
               })
               .then((response) => {
                 const dataFromGithub = Array.from(response.data);
+                console.log(dataFromGithub)
                     this.setState({
                         repo : dataFromGithub 
                     })
@@ -50,9 +52,17 @@ class GithubList extends Component{
     static getDerivedStateFromProps(props, state) {
       const repoKey = props.match.url.substring(6)
       const repo = state.listOfRepoFromGithub.filter(repo => repo.id == repoKey)
-      let api = String(repo.map(item => item.contents_url))
-      console.log(api)
-      state.api = api
+      let name = String(repo.map(item => item.name))
+      if(!state.api.includes(name)){
+        state.api = state.api.concat(name)
+        return {...state}
+      }
+      if(!state.api.includes('content')) {
+        state.api = state.api.concat('/content')
+        return {...state}
+      }
+      console.log(state.api)
+      //console.log(state.api.includes(name))
       //const repoForRender = this.state.listOfRepoFromGithub.filter(repo => repo.id == repoId)
       return null;
     }
@@ -60,7 +70,7 @@ class GithubList extends Component{
     render(){
             const { match, location, history } = this.props
             const { listOfRepoFromGithub, api, repo } = this.state
-            console.log(repo)
+            console.log(api)
             const repoId = match.url.substring(6) 
             const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
             
