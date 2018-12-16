@@ -62,8 +62,6 @@ class GithubList extends Component{
         return {...state}
       }
       console.log(state.api)
-      //console.log(state.api.includes(name))
-      //const repoForRender = this.state.listOfRepoFromGithub.filter(repo => repo.id == repoId)
       return null;
     }
         

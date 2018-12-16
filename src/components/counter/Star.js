@@ -8,7 +8,8 @@ const Star = (props) =>{
         <div
         onClick={props.changeColor}
         style={{
-            backgroundColor : '{hue}'
+            backgroundColor : hue,
+            borderRadius : '50%'
         }}
         >
             <i 
