@@ -47,7 +47,6 @@ class App extends Component {
     this.getDataFromGithub();
   }
   render() {
-    console.log(this.state.arrayFromRepo)
     const { wait, arrayFromRepo, totalAmount } = this.state; 
     return (
       <div>
@@ -62,7 +61,7 @@ class App extends Component {
           />
           )
         } /> 
-        <Route path ='/repo' render={()=><GithubList />}/>
+        <Route path ='/repo/:number' render={()=><GithubList />}/>
       </div>
     )
     
