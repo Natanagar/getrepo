@@ -12,7 +12,6 @@ class Counter extends Component{
         changeStarColor: false
     }
     changeColor = event => {
-        console.log("HURA")
         if(!this.state.changeStarColor){
             this.setState({
                 changeStarColor : true
