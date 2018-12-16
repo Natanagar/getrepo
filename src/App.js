@@ -3,9 +3,11 @@ import Home from './components/Home';
 import GithubList from './components/repo/Repo';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import sortBy from 'sort-by';
 import Splashscreen from './components/splashscreen/Splashscreen';
-import Github from '/Users/home/Documents/Programming/getrepo/src/api/Github'
+import Github from '/Users/home/Documents/Programming/getrepo/src/api/Github';
 import './App.css';
+
 
 class App extends Component {
   constructor(props){
@@ -17,14 +19,20 @@ class App extends Component {
   state = {
     wait : false,
     arrayFromRepo : [],
-    totalAmount : 0
+    totalAmount : 0,
+    query : ''
   }
   sortingRepoInTheColumns = (event, data) => {
     //console.log("We've got it");
     console.log(event);
   }
-  getDataFromTable = event => {
-    console.log("We've got it")
+  getDataFromTable = (event,value) => {
+    const inputValue = event.target.value.substr(0.20)
+    if(inputValue !== this.state.query ){
+      this.setState({
+        query : inputValue
+      })
+    }
   }
   getDataFromGithub = () => {
     axios({
@@ -47,7 +55,13 @@ class App extends Component {
     this.getDataFromGithub();
   }
   render() {
-    const { wait, arrayFromRepo, totalAmount } = this.state; 
+    const { wait, arrayFromRepo, totalAmount, query } = this.state;
+    //sorting array with repos
+    const sortedRepos = arrayFromRepo.filter(repo=> {
+      return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    })
+
+
     return (
       <div>
         <Route exact path='/' render={
@@ -58,6 +72,7 @@ class App extends Component {
           getDataFromTable={this.getDataFromTable}
           arrayFromRepo={arrayFromRepo}
           totalAmount={totalAmount}
+          sortedRepos={sortedRepos.sort(sortBy('name'))}
           />
           )
         } /> 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class Header extends Component {
   render() {
+    const { getDataFromTable } = this.props;
     return (
       <nav className="header">
 
@@ -28,7 +29,11 @@ export default class Header extends Component {
                 }}>
                 <i className="fas fa-search"></i>
               </span>
-              <input type="text" placeholder="Search or jump to..."></input>
+              <input 
+              type="text" 
+              placeholder="Search or jump to..."
+              onChange={getDataFromTable}
+              ></input>
             </li>
             <li><a href='/some/valid/url'>PullRequests</a></li>
             <li><a href="/some/valid/url">Issues</a></li>

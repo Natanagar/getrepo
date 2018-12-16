@@ -5,17 +5,19 @@ import Splashscreen from './splashscreen/Splashscreen';
 
 export default class Home extends Component {
   render() {
-    const { wait, sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo } = this.props
+    const { wait, sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos } = this.props
     return (
      wait 
      ?
         <Splashscreen />
      : 
       <div className='home'>
-        <Header />
-        <Content 
-        sortingRepoInTheColumns={sortingRepoInTheColumns}
+        <Header 
         getDataFromTable={getDataFromTable}
+        />
+        <Content
+        sortedRepos={sortedRepos}
+        sortingRepoInTheColumns={sortingRepoInTheColumns}
         arrayFromRepo={arrayFromRepo}
         totalAmount={totalAmount}
         />

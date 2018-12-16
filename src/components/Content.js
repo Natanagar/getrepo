@@ -6,14 +6,13 @@ import Counter from './counter/Counter';
 
 export default class Content extends Component {
   render() {
-    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo } = this.props;
+    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
-   
-    return (
+    console.log(sortedRepos.length)
      
-      
-      <div className='content-repos'>
+    return (
+     <div className='content-repos'>
         <table>
           <thead>
             <tr>
@@ -22,7 +21,7 @@ export default class Content extends Component {
           </thead>
        
           <tbody>
-            {arrayFromRepo.map(repo => 
+            {sortedRepos.map(repo => 
               <tr style={{
                 border : "2px solid black",
                 fontSize : "10px",
