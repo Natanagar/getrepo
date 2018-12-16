@@ -8,7 +8,8 @@ import moment from 'moment';
 class GithubList extends Component{
     state ={ 
         listOfRepoFromGithub : [],
-        api : ""
+        api : "",
+        repo : []
     }
     getDataFromApi = () => {
         axios({
@@ -32,9 +33,9 @@ class GithubList extends Component{
                 url: this.state.api 
               })
               .then((response) => {
-                const reposFromGithub = Array.from(response.data);
+                const dataFromGithub = Array.from(response.data);
                     this.setState({
-                        listOfRepoFromGithub : reposFromGithub  
+                        repo : dataFromGithub 
                     })
                 })
               .catch(error => console.log(error))
@@ -44,6 +45,7 @@ class GithubList extends Component{
     
     componentDidMount(){
         this.getDataFromApi()
+        this.getInfoAboutRepo()
     }
     static getDerivedStateFromProps(props, state) {
       const repoKey = props.match.url.substring(6)
@@ -57,8 +59,8 @@ class GithubList extends Component{
         
     render(){
             const { match, location, history } = this.props
-            const { listOfRepoFromGithub, api } = this.state
-            console.log(api)
+            const { listOfRepoFromGithub, api, repo } = this.state
+            console.log(repo)
             const repoId = match.url.substring(6) 
             const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
             
@@ -67,8 +69,11 @@ class GithubList extends Component{
                 <table>
                     <thead>
                         <tr>
-                            {repoForRender.map(item=> 
-                            <th style={{
+                            {repoForRender.map(item=>
+                            
+                            <th 
+                            key={item.id} 
+                            style={{
                                 fontFamily: 'Noto Serif TC',
                                 textTransform : "uppercase",
                                 fontSize: '24px',

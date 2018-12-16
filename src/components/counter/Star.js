@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
-const Star = () =>{
+const Star = (props) =>{
+    console.log(props)
+    const hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+    console.log(hue)
     return(
-        <div>
+        (props.changeStarColor) ?
+        <div
+        onClick={props.changeColor}
+        >
             <i 
             style={{
-                justifyContent: "center"
+                justifyContent: "center",
+                backgroundColor : '{hue}'
+            }}
+            className="material-icons">stars</i>
+        </div>
+        :
+        <div
+        onClick={props.changeColor}
+        >
+            <i 
+            style={{
+                justifyContent: "center",
+                
             }}
             className="material-icons">stars</i>
         </div>
