@@ -107,3 +107,7 @@ ul.menu li a{
 table{
     border-collapse: collapse;
 }
+/**/
+div.list-of-the-repos{
+    margin: 50px auto 50px auto;
+}
