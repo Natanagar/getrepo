@@ -23,12 +23,17 @@ class Counter extends Component{
             })
         }
     }
-    updateState = (actions)=> {
-        if(actions = 'incrementAction'){
-            {Store('incrementAction')}
-        } else {
-            {Store('decrementAction')}
+    updateState = action => {
+        if(action == 'increment'){
+            this.setState({
+                counter : this.state.counter+1
+            })
+        } else if(action == 'decrement' && this.state.counter > 0){
+           this.setState({
+               counter : this.state.counter-1
+           })
         }
+        
     }
     render(){
         const { changeStarColor, counter } = this.state
@@ -40,7 +45,7 @@ class Counter extends Component{
             />
             <label>
                 <button
-                onClick={this.updateState}//{Store('incrementAction')}
+                onClick={()=>this.updateState('increment')}//{Store('incrementAction')}
                 >
                     <i style={{
                         fontSize: "10px",
@@ -53,7 +58,7 @@ class Counter extends Component{
             </label>
             <label>
                 <button
-                    onClick={this.updateState}//Store('decrementAction')}
+                    onClick={()=>this.updateState('decrement')}//Store('decrementAction')}
                     ><i style={{
                         fontSize: "10px"
                     }}

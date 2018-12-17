@@ -9,7 +9,6 @@ export default class Content extends Component {
     const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
-    console.log(sortedRepos.length)
      
     return (
      <div className='content-repos'>
