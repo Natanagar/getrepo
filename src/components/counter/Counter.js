@@ -5,7 +5,8 @@ import Store from './Redux'
 class Counter extends Component{
     constructor(props){
         super(props)
-        this.changeColor = this.changeColor.bind(this)
+        this.changeColor = this.changeColor.bind(this);
+        this.updateState = this.updateState.bind(this);
     }
     state={
         counter: 0,
@@ -22,8 +23,15 @@ class Counter extends Component{
             })
         }
     }
+    updateState = (actions)=> {
+        if(actions = 'incrementAction'){
+            {Store('incrementAction')}
+        } else {
+            {Store('decrementAction')}
+        }
+    }
     render(){
-        const { changeStarColor } = this.state
+        const { changeStarColor, counter } = this.state
         return(
             <div className="Counter">
             <Star
@@ -32,7 +40,7 @@ class Counter extends Component{
             />
             <label>
                 <button
-                onClick={()=>(console.log("plus"))}
+                onClick={this.updateState}//{Store('incrementAction')}
                 >
                     <i style={{
                         fontSize: "10px",
@@ -45,7 +53,7 @@ class Counter extends Component{
             </label>
             <label>
                 <button
-                    onClick={()=>{console.log('minus')}}
+                    onClick={this.updateState}//Store('decrementAction')}
                     ><i style={{
                         fontSize: "10px"
                     }}
@@ -61,7 +69,7 @@ class Counter extends Component{
                 fontWeight: 'bold',
                 fontStyle: 'oblique'
             }}
-            >0</div>
+            >{counter}</div>
             </div>
         )
     }

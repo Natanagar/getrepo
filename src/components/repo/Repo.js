@@ -8,7 +8,7 @@ import moment from 'moment';
 class GithubList extends Component{
     state ={ 
         listOfRepoFromGithub : [],
-        api : 'https://api.github.com/repos/Natanagar/',
+        api : '',
         repo : [],
         repoName : ""
     }
@@ -52,23 +52,26 @@ class GithubList extends Component{
     static getDerivedStateFromProps(props, state) {
       const repoKey = props.match.url.substring(6)
       const repo = state.listOfRepoFromGithub.filter(repo => repo.id == repoKey)
-      let name = String(repo.map(item => item.name))
-      if(!state.api.includes(name)){
+      console.log(repo)
+      const name = String(repo.map(item => item.name))
+      console.log(name)
+      state.api = `https://api.github.com/users/Natanagar/repos/${name}/contents`
+      //const compareApi = repo.filter(repo=> console.log(repo.contents_url))
+    
+      /*if(!state.api.includes(name)){
         state.api = state.api.concat(name)
         return {...state}
       }
       if(!state.api.includes('content')) {
         state.api = state.api.concat('/content')
         return {...state}
-      }
-      console.log(state.api)
+      }*/
       return null;
     }
         
     render(){
             const { match, location, history } = this.props
             const { listOfRepoFromGithub, api, repo } = this.state
-            console.log(api)
             const repoId = match.url.substring(6) 
             const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
             

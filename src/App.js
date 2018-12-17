@@ -42,6 +42,7 @@ class App extends Component {
     .then((response) => {
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
+      console.log(reposFromGithub)
       if(totalRepos !== this.state.arrayFromRepo){
         this.setState({
           totalAmount : totalRepos,
@@ -60,7 +61,7 @@ class App extends Component {
     const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
     })
-
+    console.log(arrayFromRepo)
 
     return (
       <div>
