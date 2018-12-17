@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import sortBy from 'sort-by';
 import Splashscreen from './components/splashscreen/Splashscreen';
-import Github from '/Users/home/Documents/Programming/getrepo/src/api/Github';
+import Github from './api/Github';
 import './App.css';
 
 

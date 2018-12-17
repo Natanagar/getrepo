@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import Github from '/Users/home/Documents/Programming/getrepo/src/api/Github';
-import Counter from '/Users/home/Documents/Programming/getrepo/src/components/counter/Counter'
+import Github from '../../api/Github';
+import Counter from '../counter/Counter'
 import {withRouter } from "react-router";
 import moment from 'moment';
 
