@@ -65,11 +65,7 @@ class App extends Component {
     .catch(error => console.log(error))
   }
   getAnotherRepoFromGithub = () => {
-    axios.get('https://api.github.com/users/', {
-        params : {
-          user : this.state.searchData
-        }
-      }
+    axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
     )
     .then((response) => {
       const totalRepos = response.data.length;
@@ -82,6 +78,10 @@ class App extends Component {
       }
     })
     .catch(error => console.log(error))
+  }
+  static getDerivedStateFromProps(nextProps, nextState, prevState) {
+    console.log(prevState)
+    console.log(nextState)
   }
   componentDidUpdate(prevState, nextState){
     console.log(nextState);
