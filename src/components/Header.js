@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Header extends Component {
   render() {
-    const { getDataFromTable } = this.props;
+    const { getDataFromTable, getDataFromInputGithub } = this.props;
     return (
       <nav className="header">
 
@@ -32,7 +32,8 @@ export default class Header extends Component {
               <input 
               type="text" 
               placeholder="Search or jump to..."
-              onChange={getDataFromTable}
+              //onChange={getDataFromTable}
+              onKeyPress={getDataFromInputGithub}
               ></input>
             </li>
             <li><a href='/some/valid/url'>PullRequests</a></li>

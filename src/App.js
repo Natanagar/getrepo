@@ -14,18 +14,31 @@ class App extends Component {
     super(props)
     this.getDataFromGithub = this.getDataFromGithub.bind(this);
     this.sortingRepoInTheColumns = this.sortingRepoInTheColumns.bind(this);
-    this.getDataFromTable = this.getDataFromTable.bind(this)
+    this.getDataFromTable = this.getDataFromTable.bind(this);
+    this.getDataFromInputGithub = this.getDataFromInputGithub.bind(this)
+    this.getAnotherRepoFromGithub = this.getAnotherRepoFromGithub.bind(this)
   }
   state = {
     wait : false,
     arrayFromRepo : [],
     totalAmount : 0,
-    query : ''
+    query : '',
+    searchData : ''
   }
   sortingRepoInTheColumns = (event, data) => {
     //console.log("We've got it");
     console.log(event);
   }
+
+  getDataFromInputGithub = (event,value) => {
+    const searchRepo = event.target.value.substr(0,25)
+    if(this.state.searchData !== searchRepo){
+      this.setState({
+        searchData : searchRepo
+      })
+    }
+  }
+
   getDataFromTable = (event,value) => {
     const inputValue = event.target.value.substr(0.20)
     if(inputValue !== this.state.query ){
@@ -51,11 +64,35 @@ class App extends Component {
     })
     .catch(error => console.log(error))
   }
+  getAnotherRepoFromGithub = () => {
+    axios.get('https://api.github.com/users/', {
+        params : {
+          user : this.state.searchData
+        }
+      }
+    )
+    .then((response) => {
+      const totalRepos = response.data.length;
+      const reposFromGithub = Array.from(response.data);
+      if(totalRepos !== this.state.arrayFromRepo){
+        this.setState({
+          totalAmount : totalRepos,
+          arrayFromRepo : reposFromGithub
+        })
+      }
+    })
+    .catch(error => console.log(error))
+  }
+  componentDidUpdate(prevState, nextState){
+    console.log(nextState);
+    this.getAnotherRepoFromGithub();
+  }
   componentDidMount() {
     this.getDataFromGithub();
   }
+
   render() {
-    const { wait, arrayFromRepo, totalAmount, query } = this.state;
+    const { wait, arrayFromRepo, totalAmount, query, searchData } = this.state;
     //sorting array with repos
     const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
@@ -72,6 +109,7 @@ class App extends Component {
           arrayFromRepo={arrayFromRepo}
           totalAmount={totalAmount}
           sortedRepos={sortedRepos.sort(sortBy('name'))}
+          getDataFromInputGithub={this.getDataFromInputGithub}
           />
           )
         } /> 

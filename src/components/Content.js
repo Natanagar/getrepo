@@ -38,7 +38,7 @@ export default class Content extends Component {
                 <td>{repo.description}</td>
                 <td>{repo.language}</td>
                 <td>{moment(repo.updated_at.substr(0,10)).fromNow()}</td>
-                <Counter />
+                <td><Counter /></td>
               </tr>
               )}
 
