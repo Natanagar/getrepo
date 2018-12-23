@@ -23,7 +23,8 @@ class App extends Component {
     arrayFromRepo : [],
     totalAmount : 0,
     query : '',
-    searchData : ''
+    searchData : '',
+    hidden : false
   }
   sortingRepoInTheColumns = (event, data) => {
     //console.log("We've got it");
@@ -79,20 +80,18 @@ class App extends Component {
     })
     .catch(error => console.log(error))
   }
-  static getDerivedStateFromProps(nextProps, nextState, prevState) {
-    console.log(prevState)
-    console.log(nextState)
-  }
   componentDidUpdate(prevState, nextState){
-    console.log(nextState);
     this.getAnotherRepoFromGithub();
   }
   componentDidMount() {
+    setTimeout(()=>this.setState({
+      hidden: true
+    }), 1500)
     this.getDataFromGithub();
   }
 
   render() {
-    const { wait, arrayFromRepo, totalAmount, query, searchData } = this.state;
+    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden } = this.state;
     //sorting array with repos
     const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
@@ -110,6 +109,7 @@ class App extends Component {
           totalAmount={totalAmount}
           sortedRepos={sortedRepos.sort(sortBy('name'))}
           getDataFromInputGithub={this.getDataFromInputGithub}
+          hidden={hidden}
           />
           )
         } /> 

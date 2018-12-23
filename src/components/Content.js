@@ -3,15 +3,18 @@ import moment from 'moment';
 import GithubList from './repo/Repo';
 import { Link } from "react-router-dom";
 import Counter from './counter/Counter';
+import Spinner from './Spinner'
 
 export default class Content extends Component {
   render() {
-    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos } = this.props;
+    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
      
     return (
      <div className='content-repos'>
+     {hidden ?
+      
         <table>
           <thead>
             <tr>
@@ -45,6 +48,11 @@ export default class Content extends Component {
           </tbody>
 
         </table>
+        :
+        <Spinner />}
+        
+      
+        
       </div>
     )
   }
