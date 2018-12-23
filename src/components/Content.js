@@ -7,7 +7,7 @@ import Spinner from './Spinner'
 
 export default class Content extends Component {
   render() {
-    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden } = this.props;
+    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden, getStar } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
      
@@ -41,7 +41,11 @@ export default class Content extends Component {
                 <td>{repo.description}</td>
                 <td>{repo.language}</td>
                 <td>{moment(repo.updated_at.substr(0,10)).fromNow()}</td>
-                <td><Counter /></td>
+                <td>
+                  <Counter 
+                  getStar={getStar}
+                  />
+                </td>
               </tr>
               )}
 

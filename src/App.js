@@ -24,7 +24,8 @@ class App extends Component {
     totalAmount : 0,
     query : '',
     searchData : '',
-    hidden : false
+    hidden : false,
+    getStar : false
   }
   sortingRepoInTheColumns = (event, data) => {
     //console.log("We've got it");
@@ -49,9 +50,10 @@ class App extends Component {
     }
   }
   getDataFromGithub = () => {
-    axios({
-      method: 'get',
-      url: Github.api
+    axios.get(`${Github.api}`, {
+      'headers' : {
+        'Authorization' : Github.secret
+      }
     })
     .then((response) => {
       const totalRepos = response.data.length;
@@ -68,6 +70,7 @@ class App extends Component {
   getAnotherRepoFromGithub = () => {
     axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
     )
+    .then(()=>{setTimeout(()=>this.setState({hidden: false}), 1500)})
     .then((response) => {
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
@@ -78,6 +81,7 @@ class App extends Component {
         })
       }
     })
+
     .catch(error => console.log(error))
   }
   componentDidUpdate(prevState, nextState){
@@ -91,7 +95,7 @@ class App extends Component {
   }
 
   render() {
-    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden } = this.state;
+    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar } = this.state;
     //sorting array with repos
     const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
@@ -110,6 +114,7 @@ class App extends Component {
           sortedRepos={sortedRepos.sort(sortBy('name'))}
           getDataFromInputGithub={this.getDataFromInputGithub}
           hidden={hidden}
+          getStar={getStar}
           />
           )
         } /> 

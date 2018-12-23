@@ -36,26 +36,30 @@ class Counter extends Component{
         
     }
     render(){
+        const { getStar } = this.props
         const { changeStarColor, counter } = this.state
         return(
             <div className="Counter">
-            <Star
-            changeStarColor={changeStarColor}
-            changeColor={this.changeColor} 
-            />
-            <label>
-                <button
-                onClick={()=>this.updateState('increment')}//{Store('incrementAction')}
-                >
-                    <i style={{
-                        fontSize: "10px",
-                        paddingLeft: '10px'
+                <div className="Star">
+                    <Star
+                    changeStarColor={changeStarColor}
+                    changeColor={this.changeColor} 
+                    />
+                </div>
+                <label>
+                    <button
+                    style={{
+                        fontFamily: 'Noto Serif TC',
+                        fontSize : '13px',
+                        fontWeight: 'bold',
+                        backgroundColor : '#e6e6ff',
+                        fontStyle : 'italic'
                     }}
-                    className="material-icons"
-                    
-                    >add</i>
-                </button>
-            </label>
+                    onClick={()=>this.updateState('increment')}//{Store('incrementAction')}
+                    >
+                    Star
+                    </button>
+                </label>
             <label>
                 <button
                     onClick={()=>this.updateState('decrement')}//Store('decrementAction')}
