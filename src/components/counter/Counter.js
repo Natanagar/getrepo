@@ -57,7 +57,7 @@ class Counter extends Component{
                         backgroundColor : '#e6e6ff',
                         fontStyle : 'italic',
                         height: '40px',
-                        width : '50px'
+                        width : '80px'
                     }}
                     onClick={()=>this.updateState()}//{Store('incrementAction')}
                     >
@@ -82,7 +82,8 @@ class Counter extends Component{
                 color: 'grey',
                 fontFamily: 'Noto Serif TC',
                 fontWeight: 'bold',
-                fontStyle: 'oblique'
+                fontStyle: 'oblique',
+                height: '50px'
             }}
             >{counter}</div>
             </div>

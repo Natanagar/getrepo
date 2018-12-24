@@ -5,7 +5,7 @@
 }
 .content-repos table{
     margin: auto 50px auto 50px;
-    width: 70%;
+    width: 100%;
     text-align: center;
 }
 /* styling menu*/
@@ -93,11 +93,12 @@ ul.menu li a{
   }
   /* styling table */
   table{
-      width: 100%;
+      width: auto;
   }
   /* Counter */
   div.Counter{
       display: flex;
+      margin: auto;
   }
   div.Buttons{
       
@@ -134,5 +135,14 @@ div.list-of-the-repos{
   }
 /*Star*/
 button.div.star{
-    height: 40px;
+    height: 50px;
+    width: 80px
+}
+div.label.star {
+    height: 50px;
+    width: 80px;
+}
+/*material icons*/
+.material-icons{
+    font-size: 32px;
 }
