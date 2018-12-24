@@ -29,13 +29,13 @@ class Counter extends Component{
         console.log(this.state.oneTap)
         if(this.state.oneTap){
             this.setState({
-                counter : `${this.state.counter + 1}`,
+                counter : `${Number(this.state.counter) + 1}`,
                 buttonText : "Unstar",
                 oneTap : false
             })
         } else {
             this.setState({
-                counter : `${this.state.counter - 1}`,
+                counter : `${Number(this.state.counter) - 1}`,
                 buttonText : 'Star',
                 oneTap : true
             })
@@ -56,7 +56,8 @@ class Counter extends Component{
                         fontWeight: 'bold',
                         backgroundColor : '#e6e6ff',
                         fontStyle : 'italic',
-                        height: '40px'
+                        height: '40px',
+                        width : '50px'
                     }}
                     onClick={()=>this.updateState()}//{Store('incrementAction')}
                     >
