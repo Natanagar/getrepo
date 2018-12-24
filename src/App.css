@@ -117,8 +117,50 @@ ul.menu li a{
 
 table{
     border-collapse: collapse;
+    width: 100%;
 }
-/**/
+/*media-querries table*/
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+/* Force table to not be like tables anymore */
+table, thead, tbody, th, td, tr { 
+	display: block; 
+}
+	
+/* Hide table headers (but not display: none;, for accessibility) */
+thead tr { 
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+	
+tr { border: 1px solid #ccc; }
+	
+td { 
+/* Behave  like a "row" */
+	border: none;
+	border-bottom: 1px solid #eee; 
+	position: relative;
+	padding-left: 50%; 
+}
+	
+td:before { 
+/* Now like a table header */
+    position: absolute;
+	/* Top/left values mimic padding */
+	top: 6px;
+	left: 6px;
+	width: 45%; 
+	padding-right: 10px; 
+	white-space: nowrap;
+    }
+}
+
 div.list-of-the-repos{
     margin: 50px auto 50px auto;
 }
@@ -164,5 +206,17 @@ div.number{
     font-style : oblique;
     height : 50px;
     width : 40px;
-    margin : auto;
+    margin : 10px auto;
+}
+.rating {
+    margin : 5px auto;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 500;
+    background-color: #d1d1ff;
+    font-family: 'Lobster', cursive;
+    box-shadow: 10px 10px 28px -6px rgba(0,0,0,0.67);
+    -webkit-box-shadow: 10px 10px 28px -6px rgba(0,0,0,0.67);
+    -moz-box-shadow: 10px 10px 28px -6px rgba(0,0,0,0.67);
+
 }

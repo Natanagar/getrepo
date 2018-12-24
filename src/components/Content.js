@@ -26,9 +26,9 @@ export default class Content extends Component {
             {sortedRepos.map(repo => 
               <tr style={{
                 border : "2px solid black",
-                fontSize : "10px",
-                fontFamily: 'Noto Serif TC',
-                fontWeight : 'italic'
+                fontSize : "14px",
+                fontFamily: "Lobster cursive",
+                fontWeight : 'italic',
               }} key={repo.id}>
                 
                   <td>

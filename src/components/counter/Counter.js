@@ -50,15 +50,7 @@ class Counter extends Component{
                 
                 <label className="buttons">
                     <button
-                    /*style={{
-                        fontFamily: 'Noto Serif TC',
-                        fontSize : '13px',
-                        fontWeight: 'bold',
-                        backgroundColor : '#e6e6ff',
-                        fontStyle : 'italic',
-                        height: '40px',
-                        width : '80px'
-                    }}*/
+                    className="rating"
                     onClick={()=>this.updateState()}//{Store('incrementAction')}
                     >
                     {buttonText}
@@ -77,16 +69,6 @@ class Counter extends Component{
                     </button>
             </label>
             <div className="number"
-            /*style={{
-                fontSize: "16px",
-                color: 'grey',
-                fontFamily: 'Noto Serif TC',
-                fontWeight: 'bold',
-                fontStyle: 'oblique',
-                height: '50px',
-                width: '40px',
-                margin : 'auto'
-            }}*/
             >{counter}</div>
             </div>
         )
