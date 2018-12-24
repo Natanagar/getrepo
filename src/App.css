@@ -20,7 +20,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 5px 55px 50px -20px #b6b6b6;
-    width: 70% 
+    width: 100% 
 }
 /*.header nav{
     min-height: 400px;
@@ -104,8 +104,14 @@ ul.menu li a{
       display: flex;
       margin: auto;
   }
-  div.Buttons{
-      
+  label.buttons{
+    font-family: Noto Serif TC;
+    font-size : 13px;
+    font-weight: 600;
+    background-color : #e6e6ff;     
+    font-style : italic;
+    height : 40px;
+    width : 80px;   
   }
   /*Table with content*/
 
@@ -149,4 +155,14 @@ div.label.star {
 /*material icons*/
 .material-icons{
     font-size: 32px;
+}
+div.number{
+    font-size: 16px;
+    color: grey;
+    font-family : Noto Serif TC;
+    font-weight : 600;
+    font-style : oblique;
+    height : 50px;
+    width : 40px;
+    margin : auto;
 }
