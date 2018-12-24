@@ -15,8 +15,8 @@ class App extends Component {
     this.getDataFromGithub = this.getDataFromGithub.bind(this);
     this.sortingRepoInTheColumns = this.sortingRepoInTheColumns.bind(this);
     this.getDataFromTable = this.getDataFromTable.bind(this);
-    this.getDataFromInputGithub = this.getDataFromInputGithub.bind(this)
-    this.getAnotherRepoFromGithub = this.getAnotherRepoFromGithub.bind(this)
+    this.getDataFromInputGithub = this.getDataFromInputGithub.bind(this);
+    this.getAnotherRepoFromGithub = this.getAnotherRepoFromGithub.bind(this);
   }
   state = {
     wait : false,
@@ -49,6 +49,7 @@ class App extends Component {
       })
     }
   }
+ 
   getDataFromGithub = () => {
     axios.get(`${Github.api}`, {
       'headers' : {

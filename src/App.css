@@ -132,4 +132,7 @@ div.list-of-the-repos{
       transform: rotate(360deg);
     }
   }
-  
+/*Star*/
+button.div.star{
+    height: 40px;
+}

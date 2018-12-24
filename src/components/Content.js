@@ -18,7 +18,7 @@ export default class Content extends Component {
         <table>
           <thead>
             <tr>
-            {Headers.map(item=> (<th>{item}</th>))}
+            {Headers.map(item=> (<th key={item} >{item}</th>))}
             </tr>
           </thead>
        

@@ -10,7 +10,9 @@ class Counter extends Component{
     }
     state={
         counter: 0,
-        changeStarColor: false
+        changeStarColor: false,
+        buttonText : 'Star',
+        oneTap : 'false'
     }
     changeColor = event => {
         if(!this.state.changeStarColor){
@@ -23,29 +25,29 @@ class Counter extends Component{
             })
         }
     }
-    updateState = action => {
-        if(action == 'increment'){
+    updateState = () => {
+        console.log(this.state.oneTap)
+        if(this.state.oneTap){
             this.setState({
-                counter : this.state.counter+1
+                counter : `${this.state.counter + 1}`,
+                buttonText : "Unstar",
+                oneTap : false
             })
-        } else if(action == 'decrement' && this.state.counter > 0){
-           this.setState({
-               counter : this.state.counter-1
-           })
+        } else {
+            this.setState({
+                counter : `${this.state.counter - 1}`,
+                buttonText : 'Star',
+                oneTap : true
+            })
         }
         
     }
     render(){
         const { getStar } = this.props
-        const { changeStarColor, counter } = this.state
+        const { changeStarColor, counter, buttonText } = this.state
         return(
             <div className="Counter">
-                <div className="Star">
-                    <Star
-                    changeStarColor={changeStarColor}
-                    changeColor={this.changeColor} 
-                    />
-                </div>
+                
                 <label>
                     <button
                     style={{
@@ -53,21 +55,24 @@ class Counter extends Component{
                         fontSize : '13px',
                         fontWeight: 'bold',
                         backgroundColor : '#e6e6ff',
-                        fontStyle : 'italic'
+                        fontStyle : 'italic',
+                        height: '40px'
                     }}
-                    onClick={()=>this.updateState('increment')}//{Store('incrementAction')}
+                    onClick={()=>this.updateState()}//{Store('incrementAction')}
                     >
-                    Star
+                    {buttonText}
                     </button>
                 </label>
             <label>
                 <button
-                    onClick={()=>this.updateState('decrement')}//Store('decrementAction')}
-                    ><i style={{
-                        fontSize: "10px"
-                    }}
-                    className="material-icons"
-                    >remove</i>
+                    onClick={()=>this.updateState()}//Store('decrementAction')}
+                    >
+                    <div className="Star">
+                        <Star
+                        changeStarColor={changeStarColor}
+                        changeColor={this.changeColor} 
+                        />
+                    </div>
                     </button>
             </label>
             <div
