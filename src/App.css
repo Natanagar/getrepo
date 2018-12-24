@@ -92,6 +92,10 @@ ul.menu li a{
     font-style: oblique;
   }
   /* styling table */
+  thead.Headers{
+      font-size: 14px;
+      font-style: italic;
+  }
   table{
       width: auto;
   }

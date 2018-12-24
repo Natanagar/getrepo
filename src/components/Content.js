@@ -16,7 +16,7 @@ export default class Content extends Component {
      {hidden ?
       
         <table>
-          <thead>
+          <thead className="Headers">
             <tr>
             {Headers.map(item=> (<th key={item} >{item}</th>))}
             </tr>

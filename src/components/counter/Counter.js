@@ -83,7 +83,9 @@ class Counter extends Component{
                 fontFamily: 'Noto Serif TC',
                 fontWeight: 'bold',
                 fontStyle: 'oblique',
-                height: '50px'
+                height: '50px',
+                width: '40px',
+                margin : 'auto'
             }}
             >{counter}</div>
             </div>
