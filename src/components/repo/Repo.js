@@ -120,18 +120,26 @@ class GithubList extends Component{
                 <label className='repo'>
                    <table>
                         <thead>
-                            Header
+                            <tr>
+                                <th>Header</th>
+                            </tr>
+                            
                         </thead>
                         <tbody>
-                            Body
+                            {repo.map(item=> <tr
+                            key={item.id}
+                            >
+                            <td>
+                                <a href={item.html_url} 
+                                alt={item.name}
+                                >
+                                {item.name}
+                                </a></td>
+                            </tr>)}
+
+                            
                         </tbody>
                     </table> 
-                    <ul>
-                        {repo.map(item=> <li
-                        key={item.id}
-                        >{item.name}</li>)}
-
-                    </ul>
                 </label>
             </div>
         )
