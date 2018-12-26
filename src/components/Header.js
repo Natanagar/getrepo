@@ -27,7 +27,7 @@ export default class Header extends Component {
                   fontSize:"20px",
                   color: 'yellow',
                   marginRight: '5px',
-                  paddingBottom :"10px"
+                  paddingBottom :"5px"
                 }}>
                 <i className="fas fa-search"></i>
               </span>

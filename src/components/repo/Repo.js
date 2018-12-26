@@ -54,14 +54,17 @@ class GithubList extends Component{
       return null;
     }
    
-    componentDidUpdate(){
-        this.getInfoAboutRepo()
+    componentDidUpdate(prevState, prevProps){
+        if(prevState.repo !== this.state.repo && this.state.repo.length === 0){
+            this.getInfoAboutRepo(this.state.api);
+        }
+        
     }
         
     render(){
             const { match, location, history } = this.props
             const { listOfRepoFromGithub, api, repo } = this.state
-            
+            console.log(repo[0])
             const repoId = match.url.substring(6) 
             const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
         return(
@@ -104,9 +107,9 @@ class GithubList extends Component{
                 </table>
                 <label className='repo'>
                     <ul>
-                        {repo.forEach(item=> <li
+                        {repo.map(item=> <li
                         key={item.id}
-                        >{item.path}</li>)}
+                        >{item.name}</li>)}
 
                     </ul>
                 </label>
