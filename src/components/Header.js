@@ -9,13 +9,14 @@ export default class Header extends Component {
           
           <ul className='menu' role="navigation">
             <li>
-                <logo style={{
+                <section style={{
                 paddingLeft : '2px',
                 fontSize: '28px',
                 color: '#e0e0eb'
-              }}>
+              }}
+              >
                   <i className="fab fa-github-alt"></i>
-              </logo>
+              </section>
 
             </li>
             <li><a href="/some/valid/url">Projects</a></li>
@@ -25,7 +26,8 @@ export default class Header extends Component {
               <span style={{
                   fontSize:"20px",
                   color: 'yellow',
-                  marginRight: '5px'
+                  marginRight: '5px',
+                  paddingBottom :"10px"
                 }}>
                 <i className="fas fa-search"></i>
               </span>

@@ -29,14 +29,9 @@ class GithubList extends Component{
         }
     
     getInfoAboutRepo = () => {
-        console.log(this.state.api)
-            axios({
-                method: 'get',
-                url: this.state.api 
-              })
+            axios.get(`${this.state.api}`)
               .then((response) => {
                 const dataFromGithub = Array.from(response.data);
-                console.log(dataFromGithub)
                     this.setState({
                         repo : dataFromGithub 
                     })
@@ -48,22 +43,25 @@ class GithubList extends Component{
     
     componentDidMount(){
         this.getDataFromApi()
-        this.getInfoAboutRepo()
     }
     static getDerivedStateFromProps(props, state) {
-      const repoKey = props.match.url.substring(6)
+      const repoKey = props.match.url.substring(6);
       const repo = state.listOfRepoFromGithub.filter(repo => repo.id == repoKey)
       const name = String(repo.map(item => item.name))
       state.api = `https://api.github.com/repos/Natanagar/${name}/contents`
-      console.log(state.api)
+      //console.log(state.api)
       
       return null;
     }
    
+    componentDidUpdate(){
+        this.getInfoAboutRepo()
+    }
         
     render(){
             const { match, location, history } = this.props
             const { listOfRepoFromGithub, api, repo } = this.state
+            
             const repoId = match.url.substring(6) 
             const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
         return(
@@ -104,6 +102,14 @@ class GithubList extends Component{
                         )}
                     </tbody>
                 </table>
+                <label className='repo'>
+                    <ul>
+                        {repo.forEach(item=> <li
+                        key={item.id}
+                        >{item.path}</li>)}
+
+                    </ul>
+                </label>
             </div>
         )
     }

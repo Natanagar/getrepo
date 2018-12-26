@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 const Star = (props) =>{
     const hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
     return(
