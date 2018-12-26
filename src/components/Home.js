@@ -19,6 +19,8 @@ export default class Home extends Component {
         <Content
         sortedRepos={sortedRepos}
         sortingRepoInTheColumns={sortingRepoInTheColumns}
+        getDataFromTable={getDataFromTable}
+        getDataFromInputGithub={getDataFromInputGithub}
         arrayFromRepo={arrayFromRepo}
         totalAmount={totalAmount}
         hidden={hidden}

@@ -7,7 +7,8 @@ import Spinner from './Spinner'
 
 export default class Content extends Component {
   render() {
-    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden, getStar } = this.props;
+    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden, getStar,
+    getDataFromInputGithub } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
      

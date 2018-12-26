@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Github from '../../api/Github';
+import Header from "../Header"
 import Counter from '../counter/Counter'
 import {withRouter } from "react-router";
 import moment from 'moment';
@@ -69,6 +70,7 @@ class GithubList extends Component{
             const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
         return(
             <div className="list-of-the-repos">
+                <Header />
                 <table>
                     <thead>
                         <tr>
@@ -80,7 +82,8 @@ class GithubList extends Component{
                                 fontFamily: 'Noto Serif TC',
                                 textTransform : "uppercase",
                                 fontSize: '24px',
-                                fontWeight: '800'
+                                fontWeight: '800',
+                                padding: '20px auto auto'
 
                             }}>
                                 {item.name}
@@ -97,15 +100,32 @@ class GithubList extends Component{
                                 
                                 >{item.full_name}</td>
                                 <td style={{
-                                    fontStyle : 'italic'
+                                    fontStyle : 'italic',
+                                    fontFamily : 'Lobster cursive',
+                                    fontSize: "16px"
                                 }}
                                 >Last updated {moment(item.updated_at.substr(0,10)).fromNow()}</td>
-                                <td>{item.language}</td>
+                                <td
+                                style={{
+                                    fontStyle : 'italic',
+                                    fontFamily : 'Lobster cursive',
+                                    fontSize: "16px",
+                                    fontWeight: '800'
+                                }}
+                                >{item.language}</td>
                             </tr>
                         )}
                     </tbody>
                 </table>
                 <label className='repo'>
+                   <table>
+                        <thead>
+                            Header
+                        </thead>
+                        <tbody>
+                            Body
+                        </tbody>
+                    </table> 
                     <ul>
                         {repo.map(item=> <li
                         key={item.id}
