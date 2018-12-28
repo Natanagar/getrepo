@@ -5,11 +5,11 @@ import Header from './Header_splashscreen';
 const Splashscreen = () => {
     return(
         
-        <div className='splashscreen'>
+        <React.Fragment className='splashscreen'>
             <Header />
             <Title />
             <Content />
-        </div>
+        </React.Fragment>
     )
 }
 export default Splashscreen;

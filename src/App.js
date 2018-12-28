@@ -13,11 +13,6 @@ import './App.css';
 class App extends Component {
   constructor(props){
     super(props)
-    this.getDataFromGithub = this.getDataFromGithub.bind(this);
-    this.sortingRepoInTheColumns = this.sortingRepoInTheColumns.bind(this);
-    this.getDataFromTable = this.getDataFromTable.bind(this);
-    this.getDataFromInputGithub = this.getDataFromInputGithub.bind(this);
-    this.getAnotherRepoFromGithub = this.getAnotherRepoFromGithub.bind(this);
   }
   state = {
     wait : false,
@@ -50,7 +45,7 @@ class App extends Component {
       })
     }
   }
- 
+  //ask to get first data
   getDataFromGithub = () => {
     axios.get(api)
     /*Api.getData('Natanagar')*/
@@ -67,6 +62,7 @@ class App extends Component {
     })
     .catch(error => console.log(error))
   }
+  //ask to get another repo
   getAnotherRepoFromGithub = () => {
     axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
     )
@@ -86,14 +82,11 @@ class App extends Component {
     .catch(error => console.log(error))
   }
   componentDidUpdate(prevState, nextState){
-    console.log(prevState.searchData) 
-    console.log(this.state.searchData)
-    console.log(nextState.searchData)
     if(nextState.searchData !== this.state.searchData && this.state.searchData !== ''&& this.state.searchData.length >=2){
-      setTimeout(()=> 
+      setTimeout(()=>
+        //request throttling 0,5 sek 
         this.getAnotherRepoFromGithub(), 
         500)
-      //this.getAnotherRepoFromGithub();
     }
     
   }
@@ -108,7 +101,6 @@ class App extends Component {
   render() {
     const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar } = this.state;
     //sorting array with repos
-    console.log(searchData)
     const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
     })
@@ -120,11 +112,11 @@ class App extends Component {
           <Home 
           wait={wait}
           sortingRepoInTheColumns={this.sortingRepoInTheColumns}
-          getDataFromTable={this.getDataFromTable}
+          getDataFromTable={()=>this.getDataFromTable.bind(this)}
           arrayFromRepo={arrayFromRepo}
           totalAmount={totalAmount}
           sortedRepos={sortedRepos.sort(sortBy('name'))}
-          getDataFromInputGithub={this.getDataFromInputGithub}
+          getDataFromInputGithub={this.getDataFromInputGithub.bind(this)}
           hidden={hidden}
           getStar={getStar}
           />
