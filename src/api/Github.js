@@ -23,9 +23,18 @@ class Api {
         )
       
     }
-    getRepo = (key)  => {
+    getRepo = (id,name) => {
         return axios.get(
-            `https://api.github.com/repositories/${key}/`
+            `https://api.github.com/repos/${id}/${name}/contents/`
+        )
+    }
+    getRepoGithub = parameter => {
+        return axios.get(
+            `https://api.github.com/search/repositories`, {
+                params: {
+                  q : `${parameter}`
+                }
+            }
         )
     }
 }
