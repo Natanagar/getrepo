@@ -5,7 +5,8 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import sortBy from 'sort-by';
 import Splashscreen from './components/splashscreen/Splashscreen';
-import Github from './api/Github';
+import Api from './api/Github';
+import { api, id, secret } from './api/Github';
 import './App.css';
 
 
@@ -42,7 +43,7 @@ class App extends Component {
   }
 
   getDataFromTable = (event,value) => {
-    const inputValue = event.target.value.substr(0.20)
+    const inputValue = event.target.value.substr(0,20)
     if(inputValue !== this.state.query ){
       this.setState({
         query : inputValue
@@ -51,12 +52,10 @@ class App extends Component {
   }
  
   getDataFromGithub = () => {
-    axios.get(`${Github.api}`, {
-      'headers' : {
-        'Authorization' : Github.secret
-      }
-    })
+    axios.get(api)
+    /*Api.getData('Natanagar')*/
     .then((response) => {
+      console.log(`Данные с гитхаба ${response.data}`)
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
       if(totalRepos !== this.state.arrayFromRepo){
@@ -71,8 +70,9 @@ class App extends Component {
   getAnotherRepoFromGithub = () => {
     axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
     )
-    .then(()=>{setTimeout(()=>this.setState({hidden: false}), 1500)})
+    //remove .then(()=>{setTimeout(()=>this.setState({hidden: false}), 1500)})
     .then((response) => {
+      console.log(response)
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
       if(totalRepos !== this.state.arrayFromRepo){
@@ -86,8 +86,18 @@ class App extends Component {
     .catch(error => console.log(error))
   }
   componentDidUpdate(prevState, nextState){
-    this.getAnotherRepoFromGithub();
+    console.log(prevState.searchData) 
+    console.log(this.state.searchData)
+    console.log(nextState.searchData)
+    if(nextState.searchData !== this.state.searchData && this.state.searchData !== ''&& this.state.searchData.length >=2){
+      setTimeout(()=> 
+        this.getAnotherRepoFromGithub(), 
+        500)
+      //this.getAnotherRepoFromGithub();
+    }
+    
   }
+  
   componentDidMount() {
     setTimeout(()=>this.setState({
       hidden: true
@@ -98,12 +108,13 @@ class App extends Component {
   render() {
     const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar } = this.state;
     //sorting array with repos
+    console.log(searchData)
     const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
     })
 
     return (
-      <div>
+      <React.Fragment> 
         <Route exact path='/' render={
           ()=>(
           <Home 
@@ -120,7 +131,7 @@ class App extends Component {
           )
         } /> 
         <Route path ='/repo/:number' render={()=><GithubList />}/>
-      </div>
+      </React.Fragment>
     )
     
   }

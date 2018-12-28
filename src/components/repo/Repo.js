@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import Github from '../../api/Github';
+import { api } from '../../api/Github';
 import Header from "../Header"
 import Counter from '../counter/Counter'
 import {withRouter } from "react-router";
@@ -16,7 +16,7 @@ class GithubList extends Component{
     getDataFromApi = () => {
         axios({
             method: 'get',
-            url: Github.api
+            url: api
           })
           .then((response) => {
             const reposFromGithub = Array.from(response.data);
@@ -119,7 +119,7 @@ class GithubList extends Component{
                 </table>
                 <label className='repo'>
                    <table>
-                        <thead>
+                        <thead className="repoHeader">
                             <tr>
                                 <th>Header</th>
                             </tr>
@@ -130,7 +130,17 @@ class GithubList extends Component{
                             key={item.id}
                             >
                             <td>
-                                <a href={item.html_url} 
+                                <a
+                                style={{
+                                    textDecoration : 'none',
+                                    color : 'black',
+                                    fontSize: '18px',
+                                    fontStyle : 'italic',
+                                    padding: '15px',
+                                    margin: '20px',
+                                    marginTop: '10px',
+                                }}
+                                href={item.html_url} 
                                 alt={item.name}
                                 >
                                 {item.name}

@@ -5,9 +5,7 @@ export default class Header extends Component {
     const { getDataFromTable, getDataFromInputGithub } = this.props;
     return (
       <nav className="header">
-
-          
-          <ul className='menu' role="navigation">
+        <ul className='menu' role="navigation">
             <li>
                 <section style={{
                 paddingLeft : '2px',
@@ -35,7 +33,7 @@ export default class Header extends Component {
               type="text" 
               placeholder="Search or jump to..."
               //onChange={getDataFromTable}
-              onKeyPress={getDataFromInputGithub}
+              onChange={getDataFromInputGithub}
               ></input>
             </li>
             <li><a href='/some/valid/url'>PullRequests</a></li>

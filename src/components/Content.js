@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import GithubList from './repo/Repo';
+import Api from './repo/Repo';
 import { Link } from "react-router-dom";
 import Counter from './counter/Counter';
 import Spinner from './Spinner'

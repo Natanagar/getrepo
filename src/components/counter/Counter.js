@@ -15,7 +15,7 @@ class Counter extends Component{
         oneTap : 'false'
     }
     changeColor = event => {
-        if(!this.state.changeStarColor){
+        if(!this.state.changeStarColor){ // ternary
             this.setState({
                 changeStarColor : true
             })
@@ -51,7 +51,7 @@ class Counter extends Component{
                 <label className="buttons">
                     <button
                     className="rating"
-                    onClick={()=>this.updateState()}//{Store('incrementAction')}
+                    onClick={()=>this.updateState()}//{Store('incrementAction')}//this.update.state
                     >
                     {buttonText}
                     </button>

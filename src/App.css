@@ -225,3 +225,21 @@ div.number{
     -moz-box-shadow: 10px 10px 28px -6px rgba(0,0,0,0.67);
 
 }
+/*repo*/
+label.repo table{
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+label.repo table thead{
+    background-color: #e6e6e6;
+}
+label.repo table tbody{
+    background-color: white;
+    box-shadow: 14px 6px 25px -5px rgba(0,0,0,0.68);    
+    -webkit-box-shadow: 14px 6px 25px -5px rgba(0,0,0,0.68);
+    -moz-box-shadow: 14px 6px 25px -5px rgba(0,0,0,0.68);
+
+}
+label.repo table tbody td a{
+    padding-left: 10px;
+}
