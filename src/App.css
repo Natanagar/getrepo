@@ -1,4 +1,7 @@
-
+#root{
+    margin: 0; 
+   padding: 0;
+}
 .content-repos{
     display: flex;
     width:100%;
@@ -245,10 +248,43 @@ label.repo table tbody td a{
 }
 /*splashscreen*/
 .header-splash{
-    display: flex;
     background-color: #ffe6e6;
     height: 40px;
 }
-.splash-content{
-    background-color: #ff9999
+nav.header-splash, span{
+    margin: 15px auto 5px auto;
 }
+.splash-content{
+    background-color: #ff9999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+   
+    animation: moment-on 1s linear 5s;
+    animation-fill-mode: forwards;
+}
+div.splash-content, h2, h3, h4{
+    text-align: center;
+}
+div.splash-content, h2{
+    text-shadow: 0 1.5px 0 rgba(0, 0, 0, 0.3);
+} 
+img {
+    width: 250px
+}
+div.home{
+/*home*/
+}
+@keyframes moment-on {
+    from {opacity: 1;} 
+    10% {opacity: 0.1;}
+    to {opacity: 0;}
+ }
+
+ @keyframes moment-off {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+ }

@@ -7,7 +7,7 @@ import sortBy from 'sort-by';
 import Splashscreen from './components/splashscreen/Splashscreen';
 import Api from './api/Github';
 import { apiGithub }  from './api/Github';
-import { api, id, secret } from './api/Github';
+//import { api, id, secret } from './api/Github';
 import './App.css';
 
 
@@ -54,10 +54,8 @@ class App extends Component {
   }
   //ask to get first data
   getDataFromGithub = () => {
-    /*axios.get(api)*/
     apiGithub.getData('Natanagar')
     .then((response) => {
-      console.log(`Данные с гитхаба ${response.data}`)
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
       if(totalRepos !== this.state.arrayFromRepo){
@@ -72,7 +70,6 @@ class App extends Component {
   }
   //ask Github to another repo
   getAnotherRepoFromGithub = () => {
-    console.log(typeof `${this.state.searchData}`)
     apiGithub.getData(`${this.state.searchData}`)
     .then((response) => {
       console.log(`Данные гитхаба по запросу ${response}`)
@@ -103,16 +100,12 @@ class App extends Component {
     setTimeout(()=>this.setState({
       hidden: true,
       wait : false
-    }), 1500)
+    }), 3000)
     this.getDataFromGithub();
   }
 
   render() {
     const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar, sortedRepos } = this.state;
-    //sorting array with repos
-    /*const sortedRepos = arrayFromRepo.filter(repo=> {
-      return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-    })*/
 
     return (
       <> 

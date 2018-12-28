@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { api } from '../../api/Github';
+import { apiGithub } from '../../api/Github';
 import Header from "../Header"
 import Counter from '../counter/Counter'
 import {withRouter } from "react-router";
@@ -8,21 +8,19 @@ import moment from 'moment';
 
 class GithubList extends Component{
     state ={ 
-        listOfRepoFromGithub : [],
+        defaultReposFromGithub : [],
         api : '',
         repo : [],
         repoName : ""
     }
     getDataFromApi = () => {
-        axios({
-            method: 'get',
-            url: api
-          })
+        apiGithub.getData("Natanagar")
           .then((response) => {
             const reposFromGithub = Array.from(response.data);
+            console.log(reposFromGithub)
             if(reposFromGithub !== this.state.listOfRepoFromGithub){
                 this.setState({
-                    listOfRepoFromGithub : reposFromGithub  
+                    defaultReposFromGithub : reposFromGithub  
                 })
             }
           })
@@ -30,14 +28,24 @@ class GithubList extends Component{
         }
     
     getInfoAboutRepo = () => {
-            axios.get(`${this.state.api}`)
+        const repoKey = this.props.match.url.substring(6);
+        console.log(repoKey)
+        apiGithub.getRepo(repoKey)
+        .then(response=>console.log(response.data))
+        /*const repo = this.state.defaultReposFromGithub.filter(repo => repo.id == repoKey)
+        console.log(repo)
+        const name = String(repo.map(item => item.name))
+        const urlRepo = String(repo.map(item=>item.owner.login))
+
+            apiGithub.getRepo(urlRepo,name)
               .then((response) => {
+                  console.log(response.data)
                 const dataFromGithub = Array.from(response.data);
                     this.setState({
                         repo : dataFromGithub 
                     })
                 })
-              .catch(error => console.log(error))
+              .catch(error => console.log(error))*/
             }   
     
 
@@ -45,29 +53,20 @@ class GithubList extends Component{
     componentDidMount(){
         this.getDataFromApi()
     }
-    static getDerivedStateFromProps(props, state) {
-      const repoKey = props.match.url.substring(6);
-      const repo = state.listOfRepoFromGithub.filter(repo => repo.id == repoKey)
-      const name = String(repo.map(item => item.name))
-      state.api = `https://api.github.com/repos/Natanagar/${name}/contents`
-      //console.log(state.api)
-      
-      return null;
-    }
    
     componentDidUpdate(prevState, prevProps){
         if(prevState.repo !== this.state.repo && this.state.repo.length === 0){
-            this.getInfoAboutRepo(this.state.api);
+            this.getInfoAboutRepo();
         }
         
     }
         
     render(){
             const { match, location, history } = this.props
-            const { listOfRepoFromGithub, api, repo } = this.state
+            const { defaultReposFromGithub, api, repo } = this.state
             console.log(repo[0])
             const repoId = match.url.substring(6) 
-            const repoForRender = listOfRepoFromGithub.filter(repo => repo.id == repoId)
+            const repoForRender = defaultReposFromGithub.filter(repo => repo.id == repoId)
         return(
             <div className="list-of-the-repos">
                 <Header />
