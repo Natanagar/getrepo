@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 const Content = () => {
     return(
-        <div>
+        <div className="splash-content">
             Content splashscreen
             Agarkowa Natalia
             2018

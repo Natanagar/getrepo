@@ -243,3 +243,12 @@ label.repo table tbody{
 label.repo table tbody td a{
     padding-left: 10px;
 }
+/*splashscreen*/
+.header-splash{
+    display: flex;
+    background-color: #ffe6e6;
+    height: 40px;
+}
+.splash-content{
+    background-color: #ff9999
+}

@@ -6,6 +6,7 @@ import axios from 'axios';
 import sortBy from 'sort-by';
 import Splashscreen from './components/splashscreen/Splashscreen';
 import Api from './api/Github';
+import { apiGithub }  from './api/Github';
 import { api, id, secret } from './api/Github';
 import './App.css';
 
@@ -15,7 +16,7 @@ class App extends Component {
     super(props)
   }
   state = {
-    wait : false,
+    wait : true,
     arrayFromRepo : [],
     totalAmount : 0,
     query : '',
@@ -47,8 +48,8 @@ class App extends Component {
   }
   //ask to get first data
   getDataFromGithub = () => {
-    axios.get(api)
-    /*Api.getData('Natanagar')*/
+    /*axios.get(api)*/
+    apiGithub.getData('Natanagar')
     .then((response) => {
       console.log(`Данные с гитхаба ${response.data}`)
       const totalRepos = response.data.length;
@@ -64,8 +65,9 @@ class App extends Component {
   }
   //ask to get another repo
   getAnotherRepoFromGithub = () => {
-    axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
-    )
+    console.log(typeof `${this.state.searchData}`)
+    apiGithub.getData(`${this.state.searchData}`)/*axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
+    )*/
     //remove .then(()=>{setTimeout(()=>this.setState({hidden: false}), 1500)})
     .then((response) => {
       console.log(response)
@@ -93,7 +95,8 @@ class App extends Component {
   
   componentDidMount() {
     setTimeout(()=>this.setState({
-      hidden: true
+      hidden: true,
+      wait : false
     }), 1500)
     this.getDataFromGithub();
   }
@@ -106,7 +109,7 @@ class App extends Component {
     })
 
     return (
-      <React.Fragment> 
+      <> 
         <Route exact path='/' render={
           ()=>(
           <Home 
@@ -123,7 +126,7 @@ class App extends Component {
           )
         } /> 
         <Route path ='/repo/:number' render={()=><GithubList />}/>
-      </React.Fragment>
+      </>
     )
     
   }
