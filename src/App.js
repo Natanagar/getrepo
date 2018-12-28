@@ -12,9 +12,6 @@ import './App.css';
 
 
 class App extends Component {
-  constructor(props){
-    super(props)
-  }
   state = {
     wait : true,
     arrayFromRepo : [],
@@ -22,7 +19,8 @@ class App extends Component {
     query : '',
     searchData : '',
     hidden : false,
-    getStar : false
+    getStar : false,
+    sortedRepos : []
   }
   sortingRepoInTheColumns = (event, data) => {
     //console.log("We've got it");
@@ -46,6 +44,14 @@ class App extends Component {
       })
     }
   }
+  sortingArray = (array, query) => {
+    const sortedArray = array.filter(repo=> {
+      return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    })
+    this.setState({
+      sortedRepos : sortedArray
+    })
+  }
   //ask to get first data
   getDataFromGithub = () => {
     /*axios.get(api)*/
@@ -60,17 +66,16 @@ class App extends Component {
           arrayFromRepo : reposFromGithub
         })
       }
+      this.sortingArray(this.state.arrayFromRepo,this.state.query)
     })
     .catch(error => console.log(error))
   }
-  //ask to get another repo
+  //ask Github to another repo
   getAnotherRepoFromGithub = () => {
     console.log(typeof `${this.state.searchData}`)
-    apiGithub.getData(`${this.state.searchData}`)/*axios.get(`https://api.github.com/users/${this.state.searchData}/repos`
-    )*/
-    //remove .then(()=>{setTimeout(()=>this.setState({hidden: false}), 1500)})
+    apiGithub.getData(`${this.state.searchData}`)
     .then((response) => {
-      console.log(response)
+      console.log(`Данные гитхаба по запросу ${response}`)
       const totalRepos = response.data.length;
       const reposFromGithub = Array.from(response.data);
       if(totalRepos !== this.state.arrayFromRepo){
@@ -78,6 +83,7 @@ class App extends Component {
           totalAmount : totalRepos,
           arrayFromRepo : reposFromGithub
         })
+        this.sortingArray(this.state.arrayFromRepo, this.state.query )
       }
     })
 
@@ -102,11 +108,11 @@ class App extends Component {
   }
 
   render() {
-    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar } = this.state;
+    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar, sortedRepos } = this.state;
     //sorting array with repos
-    const sortedRepos = arrayFromRepo.filter(repo=> {
+    /*const sortedRepos = arrayFromRepo.filter(repo=> {
       return repo.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
-    })
+    })*/
 
     return (
       <> 
