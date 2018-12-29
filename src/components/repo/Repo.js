@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import { apiGithub } from '../../api/Github';
 import Header from "../Header"
 import Counter from '../counter/Counter'
@@ -81,7 +80,9 @@ class GithubList extends Component{
             const { defaultReposFromGithub, repo } = this.state
             console.log(repo[0])
             const repoId = match.url.substring(6) 
+           
             const repoForRender = defaultReposFromGithub.filter(repo => repo.id === repoId)
+           
         return(
             <div className='list-of-the-repos'>
                 <Header />

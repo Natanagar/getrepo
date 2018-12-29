@@ -7,7 +7,8 @@ import Spinner from './Spinner'
 export default class Content extends Component {
 
   render() {
-    const { sortedRepos, hidden, getStar, putDataGithubList } = this.props;
+    const { sortedRepos, hidden, getStar, putDataGithubList, getDataFromInputGithub } = this.props;
+    
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
      
     return (
