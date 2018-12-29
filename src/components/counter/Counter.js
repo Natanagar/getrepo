@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Star from "./Star";
-import Store from './Redux'
+import Store from './Redux';
+import ls from 'local-storage';
 
 class Counter extends Component{
     constructor(props){
@@ -25,26 +26,44 @@ class Counter extends Component{
             })
         }
     }
-    updateState = () => {
-        console.log(this.state.oneTap)
-        if(this.state.oneTap){
-            this.setState({
-                counter : `${Number(this.state.counter) + 1}`,
-                buttonText : "Unstar",
+    componentDidMount(){
+            let newCounter = localStorage.getItem('counter');
+            this.setState({counter: Number(newCounter),
                 oneTap : false
             })
-        } else {
-            this.setState({
-                counter : `${Number(this.state.counter) - 1}`,
-                buttonText : 'Star',
-                oneTap : true
-            })
-        }
+    }
+    updateState = () => {
+        console.log(this.state.oneTap)
+            if(this.state.oneTap){
+            
+                this.setState({
+                    counter : `${Number(this.state.counter) + 1}`,
+                    buttonText : "Unstar",
+                    oneTap : false
+                })
+                console.log(this.state.counter)
+                localStorage.setItem('counter', JSON.stringify(1)) 
+                
+            } else {
+                
+                this.setState({
+                    counter : `${Number(this.state.counter) - 1}`,
+                    buttonText : 'Star',
+                    oneTap : true
+                })
+                localStorage.setItem('counter', JSON.stringify(0))
+            
+            }
+        
         
     }
+    
     render(){
         const { getStar } = this.props
         const { changeStarColor, counter, buttonText } = this.state
+        if(counter === 0 ){
+            let newCounter = localStorage.getItem('counter')
+        }
         return(
             <div className="Counter">
                 

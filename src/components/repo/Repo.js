@@ -30,18 +30,18 @@ class GithubList extends Component{
         const repoKey = this.props.match.url.substring(6);
         const url = this.props.githubRepo.url
         const fullName = this.props.githubRepo.full_name;
-        console.log(fullName)
+        
         const repo = this.state.defaultReposFromGithub.filter(repo => repo.id == repoKey)
-        console.log(repo.length)
+        
         if (repo !== 'underfined' && repo.length !== 0){
             const name = String(repo.map(item => item.name))
             const urlRepo = String(repo.map(item=>item.owner.login))
-            console.log(urlRepo, name)
+            
 
             apiGithub.getRepo(urlRepo,name)
               .then((response) => {
                 const dataFromGithub = Array.from(response.data);
-                console.log(dataFromGithub)
+                
                     this.setState({
                         repo : dataFromGithub 
                     })

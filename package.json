@@ -5,6 +5,7 @@
   "dependencies": {
     "@storybook/cli": "^4.1.3",
     "axios": "^0.18.0",
+    "local-storage": "^1.4.2",
     "moment": "^2.23.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -31,11 +32,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@storybook/react": "^4.1.3",
+    "@babel/core": "^7.2.2",
     "@storybook/addon-actions": "^4.1.3",
     "@storybook/addon-links": "^4.1.3",
     "@storybook/addons": "^4.1.3",
-    "@babel/core": "^7.2.2",
+    "@storybook/react": "^4.1.3",
     "babel-loader": "^8.0.4"
   }
 }
