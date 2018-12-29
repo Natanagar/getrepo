@@ -20,7 +20,8 @@ class App extends Component {
     searchData : '',
     hidden : false,
     getStar : false,
-    sortedRepos : []
+    sortedRepos : [],
+    githubRepo : []
   }
   sortingRepoInTheColumns = (event, data) => {
     //console.log("We've got it");
@@ -86,6 +87,13 @@ class App extends Component {
 
     .catch(error => console.log(error))
   }
+  putDataGithubList = repo => {
+    if(this.state.githubRepo !== repo){
+      this.setState({
+        githubRepo : repo
+      })
+    }
+  }
   componentDidUpdate(prevState, nextState){
     if(nextState.searchData !== this.state.searchData && this.state.searchData !== ''&& this.state.searchData.length >=2){
       setTimeout(()=>
@@ -105,7 +113,9 @@ class App extends Component {
   }
 
   render() {
-    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar, sortedRepos } = this.state;
+    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar, 
+        githubRepo, sortedRepos,  } = this.state;
+
 
     return (
       <> 
@@ -119,12 +129,16 @@ class App extends Component {
           totalAmount={totalAmount}
           sortedRepos={sortedRepos.sort(sortBy('name'))}
           getDataFromInputGithub={this.getDataFromInputGithub.bind(this)}
+          putDataGithubList={this.putDataGithubList.bind(this)}
           hidden={hidden}
           getStar={getStar}
           />
           )
         } /> 
-        <Route path ='/repo/:number' render={()=><GithubList />}/>
+        <Route path ='/repo/:number' render={()=>< GithubList
+         searchData={searchData}
+         githubRepo={githubRepo}
+          />}/>
       </>
     )
     

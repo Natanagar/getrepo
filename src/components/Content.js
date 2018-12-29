@@ -6,9 +6,10 @@ import Counter from './counter/Counter';
 import Spinner from './Spinner'
 
 export default class Content extends Component {
+
   render() {
     const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden, getStar,
-    getDataFromInputGithub } = this.props;
+    getDataFromInputGithub, putDataGithubList } = this.props;
     const rowTable = arrayFromRepo.map(item => item.name)
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
      
@@ -33,7 +34,9 @@ export default class Content extends Component {
               }} key={repo.id}>
                 
                   <td>
-                  <Link to={`/repo/${repo.id}`}>
+                  <Link 
+                  onClick={()=>putDataGithubList(repo)}
+                  to={`/repo/${repo.id}`}>
                     {repo.name}
                     </Link>
                   </td>

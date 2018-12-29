@@ -29,7 +29,9 @@ class GithubList extends Component{
     
     getInfoAboutRepo = () => {
         const repoKey = this.props.match.url.substring(6);
-        console.log(this.props)
+        console.log(this.props.githubRepo)
+        const url = this.props.githubRepo.contents_url
+        console.log(url)
         console.log(repoKey)
         const repo = this.state.defaultReposFromGithub.filter(repo => repo.id == repoKey)
         console.log(repo)
@@ -48,7 +50,8 @@ class GithubList extends Component{
                 })
               .catch(error => console.log(error))
           } else if (repo.length === 0) {
-            console.log('underfined is not a function')
+            axios.get(url)
+            .then(response => console.log(response.data))
          }
     } 
         

@@ -15,11 +15,10 @@ class Api {
     getData = params => {
         return axios.get(
             `https://api.github.com/users/${params}/repos`, 
-            /*{
-                'headers' : {
-                  'Authorization' : this.secret
-                }
-            }*/
+            {
+                'client_id' : `${this.id}`,
+                'client_secret' : `${this.secret}`
+            }
         )
       
     }
