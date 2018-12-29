@@ -109,7 +109,7 @@ ul.menu li a{
   /* Counter */
   div.Counter{
       display: flex;
-      margin: auto;
+      max-width: 200px;
   }
   label.buttons{
     font-family: Noto Serif TC;
@@ -118,7 +118,9 @@ ul.menu li a{
     background-color : #e6e6ff;     
     font-style : italic;
     height : 40px;
-    width : 80px;   
+    width : 80px;
+    margin: 10px auto 10px auto;
+    flex-direction: row;   
   }
   /*Table with content*/
 
@@ -196,7 +198,8 @@ div.list-of-the-repos{
 /*Star*/
 button.div.star{
     height: 50px;
-    width: 80px
+    width: 80px;
+    
 }
 div.label.star {
     height: 50px;

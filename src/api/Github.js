@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import axios from 'axios';
 
 //export const api = "https://api.github.com/users/Natanagar/repos";
@@ -14,24 +13,40 @@ class Api {
 
     getData = params => {
         return axios.get(
-            `https://api.github.com/users/${params}/repos`, 
-            {
-                'client_id' : `${this.id}`,
-                'client_secret' : `${this.secret}`
-            }
+            `https://api.github.com/users/${params}/repos`, {
+                params: {
+                client_id : `${this.id}`,
+                client_secret : `${this.secret}`
+            }}
+        )
+      
+    }
+    getGithubData = url => {
+        return axios.get(
+            `${url}`, {
+                params: {
+                client_id : `${this.id}`,
+                client_secret : `${this.secret}`
+            }}
         )
       
     }
     getRepo = (id,name) => {
         return axios.get(
-            `https://api.github.com/repos/${id}/${name}/contents/`
+            `https://api.github.com/repos/${id}/${name}/contents/`, {
+                params: {
+                client_id : `${this.id}`,
+                client_secret : `${this.secret}`
+            }}
         )
     }
     getRepoGithub = parameter => {
         return axios.get(
             `https://api.github.com/search/repositories`, {
                 params: {
-                  q : `${parameter}`
+                    client_id : `${this.id}`,
+                    client_secret : `${this.secret}`,
+                    q : `${parameter}`
                 }
             }
         )

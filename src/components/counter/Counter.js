@@ -56,7 +56,9 @@ class Counter extends Component{
                     {buttonText}
                     </button>
                 </label>
-            <label>
+            <label style={{
+                marginTop: "10px"
+            }}>
                 <button
                     onClick={()=>this.updateState()}//Store('decrementAction')}
                     >

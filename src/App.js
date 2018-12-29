@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import Home from './components/Home';
 import GithubList from './components/repo/Repo';
 import { Route } from 'react-router-dom';
-import axios from 'axios';
 import sortBy from 'sort-by';
-import Splashscreen from './components/splashscreen/Splashscreen';
-import Api from './api/Github';
 import { apiGithub }  from './api/Github';
-//import { api, id, secret } from './api/Github';
 import './App.css';
 
 
@@ -16,17 +12,14 @@ class App extends Component {
     wait : true,
     arrayFromRepo : [],
     totalAmount : 0,
-    query : '',
+    query: '',
     searchData : '',
     hidden : false,
     getStar : false,
     sortedRepos : [],
     githubRepo : []
   }
-  sortingRepoInTheColumns = (event, data) => {
-    //console.log("We've got it");
-    console.log(event);
-  }
+ 
 
   getDataFromInputGithub = (event,value) => {
     const searchRepo = event.target.value.substr(0,25)
@@ -113,7 +106,7 @@ class App extends Component {
   }
 
   render() {
-    const { wait, arrayFromRepo, totalAmount, query, searchData, hidden, getStar, 
+    const { wait, arrayFromRepo, totalAmount, hidden, getStar, 
         githubRepo, sortedRepos,  } = this.state;
 
 
@@ -123,7 +116,6 @@ class App extends Component {
           ()=>(
           <Home 
           wait={wait}
-          sortingRepoInTheColumns={this.sortingRepoInTheColumns}
           getDataFromTable={()=>this.getDataFromTable.bind(this)}
           arrayFromRepo={arrayFromRepo}
           totalAmount={totalAmount}
@@ -136,7 +128,6 @@ class App extends Component {
           )
         } /> 
         <Route path ='/repo/:number' render={()=>< GithubList
-         searchData={searchData}
          githubRepo={githubRepo}
           />}/>
       </>

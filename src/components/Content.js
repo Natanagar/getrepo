@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import Api from './repo/Repo';
 import { Link } from "react-router-dom";
 import Counter from './counter/Counter';
 import Spinner from './Spinner'
@@ -8,9 +7,7 @@ import Spinner from './Spinner'
 export default class Content extends Component {
 
   render() {
-    const { sortingRepoInTheColumns, getDataFromTable, totalAmount, arrayFromRepo, sortedRepos, hidden, getStar,
-    getDataFromInputGithub, putDataGithubList } = this.props;
-    const rowTable = arrayFromRepo.map(item => item.name)
+    const { sortedRepos, hidden, getStar, putDataGithubList } = this.props;
     const Headers = ['Name','Path','Description', 'Technology', 'Last Update']
      
     return (

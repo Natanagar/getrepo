@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Header extends Component {
   render() {
-    const { getDataFromTable, getDataFromInputGithub } = this.props;
+    const { getDataFromInputGithub } = this.props;
     return (
       <nav className="header">
         <ul className='menu' role="navigation">
@@ -32,7 +32,6 @@ export default class Header extends Component {
               <input 
               type="text" 
               placeholder="Search or jump to..."
-              //onChange={getDataFromTable}
               onChange={getDataFromInputGithub}
               ></input>
             </li>

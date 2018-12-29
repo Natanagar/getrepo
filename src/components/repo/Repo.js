@@ -11,10 +11,10 @@ class GithubList extends Component{
         defaultReposFromGithub : [],
         api : '',
         repo : [],
-        repoName : ""
+        repoName : ''
     }
     getDataFromApi = () => {
-        apiGithub.getData("Natanagar")
+        apiGithub.getData('Natanagar')
           .then((response) => {
             const reposFromGithub = Array.from(response.data);
             console.log(reposFromGithub)
@@ -42,16 +42,22 @@ class GithubList extends Component{
 
             apiGithub.getRepo(urlRepo,name)
               .then((response) => {
-                  console.log(response.data)
                 const dataFromGithub = Array.from(response.data);
+                console.log(dataFromGithub)
                     this.setState({
                         repo : dataFromGithub 
                     })
                 })
               .catch(error => console.log(error))
           } else if (repo.length === 0) {
-            axios.get(url)
-            .then(response => console.log(response.data))
+            console.log(url)
+            apiGithub.getGithubData(url)
+            .then(response => {
+                const result = Array.from(response.data)
+                console.log(result)
+            })
+                
+            .catch(error=>console.log(error))
          }
     } 
         
@@ -63,20 +69,20 @@ class GithubList extends Component{
     }
    
     componentDidUpdate(prevState, prevProps){
-        if(prevState.repo !== this.state.repo && this.state.repo.length === 0){
+        if(prevState.repo !== this.state.repo && this.state.repo.length == 0){
             this.getInfoAboutRepo();
         }
         
     }
         
     render(){
-            const { match, location, history } = this.props
-            const { defaultReposFromGithub, api, repo } = this.state
+            const { match } = this.props
+            const { defaultReposFromGithub, repo } = this.state
             console.log(repo[0])
             const repoId = match.url.substring(6) 
-            const repoForRender = defaultReposFromGithub.filter(repo => repo.id == repoId)
+            const repoForRender = defaultReposFromGithub.filter(repo => repo.id === repoId)
         return(
-            <div className="list-of-the-repos">
+            <div className='list-of-the-repos'>
                 <Header />
                 <table>
                     <thead>
@@ -126,7 +132,7 @@ class GithubList extends Component{
                 </table>
                 <label className='repo'>
                    <table>
-                        <thead className="repoHeader">
+                        <thead className='repoHeader'>
                             <tr>
                                 <th>Header</th>
                             </tr>
