@@ -28,6 +28,11 @@ class Counter extends Component{
     }
     componentDidMount(){
             let newCounter = localStorage.getItem('counter');
+            if(newCounter == 0){
+                this.setState({counter: Number(newCounter),
+                    oneTap : true
+                })
+            } else if (newCounter == 1)
             this.setState({counter: Number(newCounter),
                 oneTap : false
             })
