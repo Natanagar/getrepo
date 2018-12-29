@@ -21,15 +21,9 @@ class Api {
         )
       
     }
-    getGithubData = url => {
-        return axios.get(
-            `${url}`, {
-                params: {
-                client_id : `${this.id}`,
-                client_secret : `${this.secret}`
-            }}
-        )
-      
+    getGithubData = name => {
+      return axios.get(
+     `https://api.github.com/repos/${name}/contents/`)
     }
     getRepo = (id,name) => {
         return axios.get(

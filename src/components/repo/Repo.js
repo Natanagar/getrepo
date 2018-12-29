@@ -29,13 +29,12 @@ class GithubList extends Component{
     
     getInfoAboutRepo = () => {
         const repoKey = this.props.match.url.substring(6);
-        console.log(this.props.githubRepo)
-        const url = this.props.githubRepo.contents_url
-        console.log(url)
-        console.log(repoKey)
+        const url = this.props.githubRepo.url
+        const fullName = this.props.githubRepo.full_name;
+        console.log(fullName)
         const repo = this.state.defaultReposFromGithub.filter(repo => repo.id == repoKey)
-        console.log(repo)
-        if (repo!== 'underfined' || repo.length !== 0){
+        console.log(repo.length)
+        if (repo !== 'underfined' && repo.length !== 0){
             const name = String(repo.map(item => item.name))
             const urlRepo = String(repo.map(item=>item.owner.login))
             console.log(urlRepo, name)
@@ -50,15 +49,17 @@ class GithubList extends Component{
                 })
               .catch(error => console.log(error))
           } else if (repo.length === 0) {
-            console.log(url)
-            apiGithub.getGithubData(url)
-            .then(response => {
-                const result = Array.from(response.data)
-                console.log(result)
-            })
+            apiGithub.getGithubData(fullName)
+            .then((response) => {
                 
+                const result = response.data;
+                this.setState({
+                    repo : result
+                })
+            })
             .catch(error=>console.log(error))
          }
+        
     } 
         
     
